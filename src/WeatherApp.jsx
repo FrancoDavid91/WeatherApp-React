@@ -5,6 +5,7 @@ const WeatherApp = () => {
 
     const urlBase = 'https://api.openweathermap.org/data/2.5/weather'
     const API_KEY = 'b0542a4709365d83fd444f9ef146aa95'
+    const difKelvin = 273.15
 
     const [city, setCity] = useState('')
     const [dataWeather, setDataWeather] = useState(null)
@@ -43,6 +44,16 @@ const WeatherApp = () => {
             />
             <button type='submit'>Search</button>
         </form>
+        {
+            dataWeather && (
+                <div>
+                    <h2>{dataWeather.name}</h2>
+                    <p>Temperatura: {parseInt(dataWeather.main.temp - difKelvin)} °C</p>
+                    <p>Weather conditions: {dataWeather.weather[0].description}</p>
+                    <img src={`https://openweathermap.org/img/wn/${dataWeather.weather[0].icon}@2x.png`}/>
+                </div>
+            )
+        }
     </div>
   )
 }
